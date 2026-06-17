@@ -7,10 +7,12 @@
         @vite('resources/css/app.css')
     </head>
     <body>
+    <nav>
         <x-navlink href="/" :active="request()->is('/')">Home</x-navlink>
         <x-navlink href="/login" :active="request()->is('login')">Log In</x-navlink>
         <x-navlink href="/mycards" :active="request()->is('mycards')">My Cards</x-navlink>
-        {{ $header }}
-        {{ $slot }}
+    </nav>
+        <header>{{ $header }}</header> 
+        <main class="m-[1rem]">{{ $slot }}</main>
     </body>
 </html>
