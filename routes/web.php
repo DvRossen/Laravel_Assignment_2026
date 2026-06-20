@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
+use App\models\Card;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
     return view('home');
 });
@@ -23,39 +24,12 @@ Route::get('/login', function () {
 });
 
 Route::get('/mycards',function () {
-    return view('mycards', [
-        'cards' =>[
-            [
-            'id' => '1',
-            'title' => 'Test 1',
-            'description' => 'bla bla bla double bla 
-            bla bla bla double bla 
-            bla bla bla double bla'
-            ],[
-            'id' => '2',
-            'title' => 'Test 2',
-            'description' => 'Lorem Ipsum or whatever'
-            ]
-        ]
-    ]);
+    return view('mycards', ['cards' => Card::all()] );
 });
 
-Route::get('/card/{id}', function ($id) {
-    $cards = [
-            [
-            'id' => '1',
-            'title' => 'Test 1',
-            'description' => 'bla bla bla double bla 
-            bla bla bla double bla 
-            bla bla bla double bla'
-            ],[
-            'id' => '2',
-            'title' => 'Test 2',
-            'description' => 'Lorem Ipsum or whatever'
-            ]
-        ];
+Route::get('/card/{id}', function ($id){
 
-    $card = Arr::first($cards, fn($card) => $card['id'] == $id);
+    $card = Card::find($id);
 
     return view('card', ['card' => $card]);
 });

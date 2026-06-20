@@ -1,12 +1,12 @@
 <!-- Wrapper -->
-<div class="bg-red-500 w-[500px] h-[260px] mb-[2rem]">
+<div class="bg-red-500 w-[500px] h-[260px] mb-[2rem] mx-[1rem]">
 
 <!-- Top Wrapper -->
     <div class=" flex bg-blue-500 rounded-xl w-full h-[200px] mb-[10px] overflow-hidden">
 
 <!-- Left Side Wrapper -->
     <div class="w-[250px] h-full">
-        <img src="" class="bg-orange-500 w-full h-full "></img> <!-- chosen background here --> 
+        <img src="{{ $image }}" class="bg-orange-500 w-full h-full "></img> <!-- chosen background here --> 
     </div>
 
 <!-- Right Side Wrapper -->
@@ -41,7 +41,7 @@
     <div class="flex bg-green-500 rounded-xl w-full h-[50px]">
         <div class="px-[1rem] h-full w-[250px] flex items-center">
             <img class="bg-purple-500 size-[30px] aspect-1/1"></img> <!-- crown/star/pencil (idk yet) here --> 
-            <h3 class="line-clamp-2"> Made By</h3> <!-- card owner here -->
+            <h3 class="line-clamp-2">Made By</h3> <!-- card owner here -->
         </div>
         <div class="pr-[1rem] h-full w-[250px] flex justify-between">
             <div class="flex items-center">

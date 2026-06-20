@@ -7,6 +7,7 @@
         <x-slot:title>{{ $card['title'] }}</x-slot:title>
         <x-slot:description>{{ $card['description'] }}</x-slot:description>
         <x-slot:id>{{ $card['id'] }}</x-slot:id>
+        <x-slot:image>{{ $card['image'] }}</x-slot:image>
     </x-card>
 @endforeach
     </div>
