@@ -14,7 +14,7 @@
 
 <!-- Title & Icon Wrapper -->
         <div class="flex border-b-3 justify-between h-[40px] items-center">
-            <h2 class="text-3xl">{{ $title }}</h2> <!-- title here -->
+            <h2 class="line-clamp-1 text-2xl font-bold">{{ $title }}</h2> <!-- title here -->
             <img class="bg-purple-500 size-[30px] aspect 1/1"></img> <!-- chosen icon here --> 
         </div>
 
