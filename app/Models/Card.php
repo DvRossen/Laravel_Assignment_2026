@@ -12,4 +12,8 @@ class Card extends Model {
    protected $table = 'cards';
 
    protected $fillable = ['title', 'type', 'description', 'imageUrl', 'date'];
-}
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+   }

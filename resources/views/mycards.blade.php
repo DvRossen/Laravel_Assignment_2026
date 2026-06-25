@@ -8,6 +8,7 @@
         <x-slot:description>{{ $card['description'] }}</x-slot:description>
         <x-slot:id>{{ $card['id'] }}</x-slot:id>
         <x-slot:image>{{ $card['imageUrl'] }}</x-slot:image>
+        <x-slot:author>{{ $card->user['username'] }}</x-slot:author>
     </x-card>
 @endforeach
     </div>

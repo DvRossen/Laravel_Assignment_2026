@@ -41,7 +41,7 @@
     <div class="flex bg-green-500 rounded-xl w-full h-[50px]">
         <div class="px-[1rem] h-full w-[250px] flex items-center">
             <img class="bg-purple-500 size-[30px] aspect-1/1"></img> <!-- crown/star/pencil (idk yet) here --> 
-            <h3 class="line-clamp-2">Made By</h3> <!-- card owner here -->
+            <h3 class="line-clamp-2">{{ $author }}</h3> <!-- card owner here -->
         </div>
         <div class="pr-[1rem] h-full w-[250px] flex justify-between">
             <div class="flex items-center">
