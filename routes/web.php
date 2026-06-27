@@ -24,12 +24,17 @@ Route::get('/login', function () {
 });
 
 Route::get('/mycards',function () {
-    return view('mycards', ['cards' => Card::all()] );
+    $cards = Card::with('user')->get();
+
+return view('mycards', ['cards' =>$cards] );
 });
 
 Route::get('/card/{id}', function ($id){
 
     $card = Card::find($id);
 
-    return view('card', ['card' => $card]);
+    if(!$card){
+        abort(404);
+        };
+    return view('card_page', ['card' => $card]);
 });
