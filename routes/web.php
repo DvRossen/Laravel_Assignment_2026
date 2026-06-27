@@ -24,7 +24,7 @@ Route::get('/login', function () {
 });
 
 Route::get('/mycards',function () {
-    $cards = Card::with('user')->get();
+    $cards = Card::with('user')->simplepaginate(4);
 
 return view('mycards', ['cards' =>$cards] );
 });

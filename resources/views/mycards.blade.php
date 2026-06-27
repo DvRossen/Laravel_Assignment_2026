@@ -11,5 +11,12 @@
         <x-slot:author>{{ $card->user['username'] }}</x-slot:author>
     </x-card>
 @endforeach
+   
+        
     </div>
+    
+    <div>
+    {{ $cards->links() }}
+    </div>
+    
 </x-layout>
