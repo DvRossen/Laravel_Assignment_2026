@@ -23,10 +23,14 @@ Route::get('/login', function () {
     return view('login');
 });
 
-Route::get('/mycards',function () {
+Route::get('/card/create', function (){
+    return view('cards.create');
+});
+
+Route::get('/cards_list',function () {
     $cards = Card::with('user')->simplepaginate(4);
 
-return view('mycards', ['cards' =>$cards] );
+return view('cards.index', ['cards' =>$cards] );
 });
 
 Route::get('/card/{id}', function ($id){
@@ -36,5 +40,5 @@ Route::get('/card/{id}', function ($id){
     if(!$card){
         abort(404);
         };
-    return view('card_page', ['card' => $card]);
+    return view('cards.show', ['card' => $card]);
 });
