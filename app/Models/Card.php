@@ -12,7 +12,7 @@ class Card extends Model {
     use HasFactory;
    protected $table = 'cards';
 
-   protected $fillable = ['title', 'type', 'description', 'imageUrl', 'date'];
+   protected $fillable = [ 'user_id','title', 'type', 'description', 'imageUrl', 'date'];
 
     public function user() {
         return $this->belongsTo(User::class);

@@ -27,7 +27,7 @@ Route::get('/card/create', function (){
     return view('cards.create');
 });
 
-Route::get('/cards_list',function () {
+Route::get('/cards',function () {
     $cards = Card::with('user')->simplepaginate(4);
 
 return view('cards.index', ['cards' =>$cards] );
@@ -41,4 +41,19 @@ Route::get('/card/{id}', function ($id){
         abort(404);
         };
     return view('cards.show', ['card' => $card]);
+
+    
 });
+
+Route::post('/cards', function(){
+    
+    Card::create([
+        'title' => request('title'),
+        'description' => request('description'),
+        'type' => request('type'),
+        'imageUrl' => request('imageUrl'),
+        'date' => request('date'),
+        'user_id' => 1
+    ]);
+    return redirect('/cards');
+    });

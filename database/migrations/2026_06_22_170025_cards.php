@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('type');
             $table->longText('description');
             $table->string('imageUrl');
-            $table->timestamp('date');
+            $table->datetime('date');
             $table->timestamps();
         });
     }
