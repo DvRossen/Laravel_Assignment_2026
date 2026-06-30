@@ -47,6 +47,15 @@ Route::get('/card/{id}', function ($id){
 
 Route::post('/cards', function(){
     
+    request()->validate([
+    'title' => ['required'],
+    'description' => ['required'],
+    'type' => ['required', 'integer'],
+    'imageUrl' => ['nullable'],
+    'date' => ['required']
+    ]);
+
+
     Card::create([
         'title' => request('title'),
         'description' => request('description'),

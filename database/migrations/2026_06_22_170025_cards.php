@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('title');
             $table->integer('type');
             $table->longText('description');
-            $table->string('imageUrl');
+            $table->string('imageUrl')->nullable();
             $table->datetime('date');
             $table->timestamps();
         });
