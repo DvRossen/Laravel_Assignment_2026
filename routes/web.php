@@ -14,25 +14,29 @@ use App\models\Card;
 |
 */
 
-
+//home
 Route::get('/', function () {
     return view('home');
 });
 
+//login
 Route::get('/login', function () {
     return view('login');
 });
 
+//create
 Route::get('/card/create', function (){
     return view('cards.create');
 });
 
+//list
 Route::get('/cards',function () {
     $cards = Card::with('user')->simplepaginate(4);
 
 return view('cards.index', ['cards' =>$cards] );
 });
 
+//show
 Route::get('/card/{id}', function ($id){
 
     $card = Card::find($id);
@@ -45,6 +49,7 @@ Route::get('/card/{id}', function ($id){
     
 });
 
+//store
 Route::post('/cards', function(){
     
     request()->validate([
@@ -66,3 +71,51 @@ Route::post('/cards', function(){
     ]);
     return redirect('/cards');
     });
+
+    //update
+    Route::patch('/card{id}', function($id){
+    
+        request()->validate([
+        'title' => ['required'],
+        'description' => ['required'],
+        'type' => ['required', 'integer'],
+        'imageUrl' => ['nullable'],
+        'date' => ['required']
+        ]);
+
+        //auth
+
+        $card = Card::findOrFail($id);
+        
+        $card->update([
+        'title' => request('title'),
+        'description' => request('description'),
+        'type' => request('type'),
+        'imageUrl' => request('imageUrl'),
+        'date' => request('date')
+        ]);
+
+        return redirect('/card/' . $card['id']);
+    });
+
+    //delete
+    Route::delete('/card/{id}', function($id){
+    //auth
+    $card = Card::findOrFail($id);
+    $card->delete();
+           
+    return redirect('/cards');
+    });
+
+    //edit page
+    Route::get('/card/{id}/edit', function($id){
+
+    $card = Card::find($id);
+
+    if(!$card){
+        abort(404);
+        };
+    return view('cards.edit', ['card' => $card]);
+
+    
+});
