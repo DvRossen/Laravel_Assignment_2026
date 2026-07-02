@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\models\Card;
+use App\Http\Controllers\CardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,107 +16,18 @@ use App\models\Card;
 */
 
 //home
-Route::get('/', function () {
-    return view('home');
-});
-
+Route::view('/', 'home');
 //login
-Route::get('/login', function () {
-    return view('login');
-});
+Route::view('/login', 'login');
 
-//create
-Route::get('/card/create', function (){
-    return view('cards.create');
-});
+//Card Group
+Route::controller(CardController::class)->group(function(){
 
-//list
-Route::get('/cards',function () {
-    $cards = Card::with('user')->simplepaginate(4);
-
-return view('cards.index', ['cards' =>$cards] );
-});
-
-//show
-Route::get('/card/{id}', function ($id){
-
-    $card = Card::find($id);
-
-    if(!$card){
-        abort(404);
-        };
-    return view('cards.show', ['card' => $card]);
-
-    
-});
-
-//store
-Route::post('/cards', function(){
-    
-    request()->validate([
-    'title' => ['required'],
-    'description' => ['required'],
-    'type' => ['required', 'integer'],
-    'imageUrl' => ['nullable'],
-    'date' => ['required']
-    ]);
-
-
-    Card::create([
-        'title' => request('title'),
-        'description' => request('description'),
-        'type' => request('type'),
-        'imageUrl' => request('imageUrl'),
-        'date' => request('date'),
-        'user_id' => 1
-    ]);
-    return redirect('/cards');
-    });
-
-    //update
-    Route::patch('/card{id}', function($id){
-    
-        request()->validate([
-        'title' => ['required'],
-        'description' => ['required'],
-        'type' => ['required', 'integer'],
-        'imageUrl' => ['nullable'],
-        'date' => ['required']
-        ]);
-
-        //auth
-
-        $card = Card::findOrFail($id);
-        
-        $card->update([
-        'title' => request('title'),
-        'description' => request('description'),
-        'type' => request('type'),
-        'imageUrl' => request('imageUrl'),
-        'date' => request('date')
-        ]);
-
-        return redirect('/card/' . $card['id']);
-    });
-
-    //delete
-    Route::delete('/card/{id}', function($id){
-    //auth
-    $card = Card::findOrFail($id);
-    $card->delete();
-           
-    return redirect('/cards');
-    });
-
-    //edit page
-    Route::get('/card/{id}/edit', function($id){
-
-    $card = Card::find($id);
-
-    if(!$card){
-        abort(404);
-        };
-    return view('cards.edit', ['card' => $card]);
-
-    
+    Route::get('/card/create','create');
+    Route::get('/cards', 'index');
+    Route::get('/card/{card}', 'show');
+    Route::post('/cards', 'store');
+    Route::patch('/card{card}', 'update');
+    Route::get('/card/{card}/edit', 'edit');
+    Route::delete('/card/{card}', 'delete');
 });
