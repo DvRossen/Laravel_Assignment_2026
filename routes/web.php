@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\models\Card;
+use App\Http\Controllers\RegisteredUserController;
+use App\Http\Controllers\SessionController;
 use App\Http\Controllers\CardController;
 
 /*
@@ -17,9 +18,6 @@ use App\Http\Controllers\CardController;
 
 //home
 Route::view('/', 'home');
-//login
-Route::view('/login', 'login');
-
 //Card Group
 Route::controller(CardController::class)->group(function(){
 
@@ -31,3 +29,10 @@ Route::controller(CardController::class)->group(function(){
     Route::get('/card/{card}/edit', 'edit');
     Route::delete('/card/{card}', 'delete');
 });
+
+//Auth
+Route::get('/register', [RegisteredUserController::class, 'create']);
+Route::post('/register', [RegisteredUserController::class, 'store']);
+
+Route::get('/login', [SessionController::class, 'create']);
+Route::post('/login', [SessionController::class, 'store']);
