@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+use App\Models\User;
 
 class SessionController extends Controller
 {
@@ -14,7 +16,31 @@ class SessionController extends Controller
 
     //store session
      public function store(){
-    dd(request()->all());
+       //validate 
+        $attributes = request()->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required']
+        ]);
+        
+        //Auth::attempt did NOT work, I have traced every step and value and followed the laracast tutorial exactly and it did not work.
+        //Apparently multiple people have had trouble with Auth::attempt
+
+        $user = User::where('email','=',$attributes['email'])->first();
+        if($user && $attributes['password'] == $user['password']){ //When password hasing use  $user && Hash::check($attributes['password'], $user['password'])
+            //login
+            Auth::login($user);
+            if(Auth::check()){
+            //redirect
+            return redirect('/cards');
+            }
+        }else{
+            //error
+            throw ValidationException::withMessages([
+            'email' => 'These records do not match our system'
+        ]);
+        };
+
+        
     }
 
     //destroy session
