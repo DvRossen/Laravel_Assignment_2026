@@ -15,6 +15,13 @@
         <x-navlink href="/login" :active="request()->is('login')">Log In</x-navlink>
         <x-navlink href="/register" :active="request()->is('register')">Register</x-navlink>
         @endguest
+        @auth
+        <form method="POST" action="/logout">
+            @csrf
+            <button
+            type="submit" class="hover:cursor-pointer hover:text-red-700 text-red-500">Log out</button>
+        </form>
+        @endauth
         
     </nav>  
     
