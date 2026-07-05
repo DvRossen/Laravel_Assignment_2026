@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Card;
-use App\Models\User;
+
 
 class CardController extends Controller
 {
@@ -36,7 +35,7 @@ class CardController extends Controller
         'type' => request('type'),
         'imageUrl' => request('imageUrl'),
         'date' => request('date'),
-        'user_id' => 1
+        'user_id' => Auth::user()->id
         ]);
         return redirect('/cards');
     }
@@ -50,7 +49,7 @@ class CardController extends Controller
         //view
         return view('cards.edit', ['card' => $card]);
     }
-    public function update(Card $card){
+    public function update(Card $card,){
            
         request()->validate([
         'title' => ['required'],

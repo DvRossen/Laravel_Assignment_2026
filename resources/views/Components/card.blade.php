@@ -27,9 +27,15 @@
 
 <!-- Time & Date Wrapper -->
         <div class="flex justify-center border-t-3">
-            <h3 class="text-2xl">Date</h3> <!-- chosen date here --> 
+            <?php
+            $datetimeValue = new DateTime($datetime);
+            $date = $datetimeValue->format('d-m-Y');
+            $time = $datetimeValue->format('H:i')
+                ?>
+            <h3 class="text-2xl"><?= $date ?></h3> <!-- chosen date here --> 
             <p class="text-2xl font-bold">&nbsp;•&nbsp;</p>
-            <h3 class="text-2xl">Time</h3> <!-- chosen time here --> 
+            <h3 class="text-2xl"><?= $time ?></h3> <!-- chosen time here --> 
+           
         </div>
 
     </div>

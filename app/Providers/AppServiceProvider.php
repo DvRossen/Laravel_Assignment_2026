@@ -26,9 +26,5 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //define the gate
-    Gate::define('edit-card', function(User $user, Card $card){
-        return $card->user->is($user);      
-      });
     }
 }

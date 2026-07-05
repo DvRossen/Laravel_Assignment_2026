@@ -32,7 +32,7 @@ class SessionController extends Controller
             Auth::login($user);
             if(Auth::check()){
             //redirect
-            return redirect('/cards');
+            return redirect('/');
             }
         }else{
             //error

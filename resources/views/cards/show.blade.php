@@ -8,7 +8,7 @@
 <h3 class="font-bold">Description:</h3>
 <p>{{ $card['description'] }}</p>
 
-@can('edit-card', $card)
+@can('edit', $card)
 <a href= "/card/{{ $card['id'] }}/edit" class="text-blue-500 underline hover:text-blue-400"> Edit card</a>
 @endcan
 

@@ -16,8 +16,12 @@ use App\Http\Controllers\CardController;
 |
 */
 
+
 //home
-Route::view('/', 'home');
+Route::get('/', function(){
+$user = Auth::user();
+return view('home', ['user' => $user]);
+});
 //Card Group
 Route::controller(CardController::class)->group(function(){
     
@@ -26,8 +30,8 @@ Route::controller(CardController::class)->group(function(){
     Route::get('/cards/create','create')->middleware('auth');
     Route::post('/cards', 'store')->middleware('auth');
     Route::patch('/card{card}', 'update')->middleware('auth');
-    Route::get('/card/{card}/edit', 'edit')->middleware('auth')->can('edit-card', 'card');
-    Route::delete('/card/{card}', 'delete')->middleware('auth')->can('edit-card', 'card');
+    Route::get('/card/{card}/edit', 'edit')->middleware('auth')->can('edit', 'card');
+    Route::delete('/card/{card}', 'destroy')->middleware('auth')->can('edit', 'card');
 });
 
 //Auth
