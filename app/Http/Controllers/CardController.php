@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Card;
+use App\Models\User;
 
 class CardController extends Controller
 {
@@ -39,9 +41,13 @@ class CardController extends Controller
         return redirect('/cards');
     }
     public function edit(Card $card){
-        if(!$card){
+
+        //if doesn't exists
+          if(!$card){
         abort(404);
         };
+
+        //view
         return view('cards.edit', ['card' => $card]);
     }
     public function update(Card $card){

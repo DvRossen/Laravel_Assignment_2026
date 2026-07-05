@@ -11,7 +11,7 @@
             <input required 
                 type="email" 
                 name="email" 
-                id="email" 
+                id="email"
                 class="max-w-[25vw] border-1 border-gray-700 rounded-xs hover:bg-gray-100 focus:border-blue-500">
                 
                 @error('email')

@@ -10,12 +10,12 @@
     <nav class="flex gap-1">
         <x-navlink href="/" :active="request()->is('/')">Home</x-navlink>
         <x-navlink href="/cards" :active="request()->is('cards')">Cards List</x-navlink>
-        <x-navlink href="/card/create" :active="request()->is('card/create')">Create Card</x-navlink>
         @guest
         <x-navlink href="/login" :active="request()->is('login')">Log In</x-navlink>
         <x-navlink href="/register" :active="request()->is('register')">Register</x-navlink>
         @endguest
         @auth
+        <x-navlink href="/cards/create" :active="request()->is('cards/create')">Create Card</x-navlink>
         <form method="POST" action="/logout">
             @csrf
             <button
