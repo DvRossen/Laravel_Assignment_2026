@@ -22,6 +22,7 @@
             <x-navlink href="/register" :isAuthLink="true" :active="request()->is('register')">Register</x-navlink>
         @endguest
         @auth
+        <x-navlink href="/profile" :active="request()->is('profile')">Profile</x-navlink>
             <form method="POST" action="/logout">
                 @csrf
                 <x-button :style="'auth'">Log out</x-button>

@@ -9,7 +9,7 @@ use App\Models\Card;
 class CardController extends Controller
 {
     public function index(){
-        $cards = Card::with('user')->simplepaginate(4);
+        $cards = Card::with('user')->where('is_active', true)->simplepaginate(4);
         return view('cards.index', ['cards' =>$cards] );
 
     }
@@ -49,7 +49,7 @@ class CardController extends Controller
         //view
         return view('cards.edit', ['card' => $card]);
     }
-    public function update(Card $card,){
+    public function update(Card $card){
            
         request()->validate([
         'title' => ['required'],
@@ -59,7 +59,6 @@ class CardController extends Controller
         'date' => ['required']
         ]);
 
-        //auth
         
         $card->update([
         'title' => request('title'),
@@ -74,6 +73,19 @@ class CardController extends Controller
     public function destroy(Card $card){
         $card->delete();
         return redirect('/cards');
+    }
+
+    public function activate(Card $card){
+        if($card['is_active'] == 0){
+            Card::where('id', $card['id'])->update([
+                'is_active' => 1
+            ]);
+        }elseif($card['is_active'] == 1){
+            Card::where('id', $card['id'])->update([
+                'is_active' => 0
+            ]);
+        } 
+        return redirect('/profile');
     }
 
 }

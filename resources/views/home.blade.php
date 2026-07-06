@@ -18,6 +18,8 @@
 @guest
 <h2 class="text-2xl">Welcome To Planning Cards!</h2> 
 @endguest
+
+
 </div>
 </x-layout>
 

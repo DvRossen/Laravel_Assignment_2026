@@ -26,12 +26,13 @@ return view('home', ['user' => $user]);
 Route::controller(CardController::class)->group(function(){
     
     Route::get('/cards', 'index');
-    Route::get('/card/{card}', 'show');
+    Route::get('/card/{card}', 'show')->can('view', 'card');
     Route::get('/cards/create','create')->middleware('auth');
     Route::post('/cards', 'store')->middleware('auth');
     Route::patch('/card{card}', 'update')->middleware('auth')->can('edit', 'card');
     Route::get('/card/{card}/edit', 'edit')->middleware('auth')->can('edit', 'card');
     Route::delete('/card/{card}', 'destroy')->middleware('auth')->can('delete', 'card');
+    Route::patch('/card/{card}/activate', 'activate')->middleware('auth')->can('edit', 'card');
 });
 
 //Auth
@@ -40,3 +41,4 @@ Route::post('/register', [RegisteredUserController::class, 'store']);
 Route::get('/login', [SessionController::class, 'create']);
 Route::post('/login', [SessionController::class, 'store'])->name('login');
 Route::post('/logout', [SessionController::class, 'destroy']);
+Route::get('/profile', [RegisteredUserController::class, 'show'])->middleware('auth');
