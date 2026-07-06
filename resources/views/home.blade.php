@@ -13,3 +13,4 @@
 <h2 class="text-2xl">Welcome To Planning Cards!</h2> 
 @endguest
 </x-layout>
+
