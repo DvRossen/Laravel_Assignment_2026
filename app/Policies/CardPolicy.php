@@ -18,6 +18,9 @@ class CardPolicy
      */
    
     public function edit(User $user, Card $card){
+        return $card->user->is($user);  
+    }
+    public function delete(User $user, Card $card){
         return $card->user->is($user) || $user->is_admin;  
     }
 }

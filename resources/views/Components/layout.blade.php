@@ -6,7 +6,7 @@
         <title>Planning Cards</title>
         @vite('resources/css/app.css')
     </head>
-    <body>
+    <body class="h-screen">
         
     <nav class="grid grid-cols-2 p-3 bg-linear-to-r from-gray-900 to-gray-700">
         <div class="flex gap-3">
@@ -18,20 +18,19 @@
         </div>
         <div class="flex gap-3 justify-end">
         @guest
-            <x-navlink href="/login" :active="request()->is('login')">Log In</x-navlink>
-            <x-navlink href="/register" :active="request()->is('register')">Register</x-navlink>
+            <x-navlink href="/login" :isAuthLink="true" :active="request()->is('login')">Log In</x-navlink>
+            <x-navlink href="/register" :isAuthLink="true" :active="request()->is('register')">Register</x-navlink>
         @endguest
         @auth
             <form method="POST" action="/logout">
                 @csrf
-                <button
-                type="submit" class=" px-3 py-2 text-l text-white rounded hover:cursor-pointer active:bg-blue-600 bg-blue-500 hover:bg-blue-400">Log out</button>
+                <x-button :style="'auth'">Log out</x-button>
             </form>
         @endauth
             </div>
     </nav>
 
-    <main class="mx-3 mt-3">
+    <main class="mx-3 mt-3 h-full">
         <header class="mb-3">{{ $header }}</header> 
         {{ $slot }}
     </main>

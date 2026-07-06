@@ -86,11 +86,8 @@
         </div>
         
         <div class="flex gap-5">
-            <button type="submit" 
-                class="max-w-[25vw] min-w-[10vw] text-white bg-blue-500 rounded-xs hover:bg-blue-400 active:bg-blue-600 cursor-pointer">Update</button>
-            <button type="submit" 
-                form="delete-form"
-                class="max-w-[25vw] min-w-[10vw] text-white bg-red-500 rounded-xs hover:bg-red-600 active:bg-red-400 cursor-pointer">Delete</button>
+            <x-button>Edit Card</x-button>
+            <x-button form="delete-form" :style="'danger'">Delete Card</x-button>
         </div>
     </div>
 </form>

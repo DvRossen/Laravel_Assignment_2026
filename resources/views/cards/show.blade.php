@@ -11,5 +11,12 @@
 @can('edit', $card)
 <a href= "/card/{{ $card['id'] }}/edit" class="text-blue-500 underline hover:text-blue-400"> Edit card</a>
 @endcan
+@can('delete', $card)
+<x-button form="delete-form" :style="'danger'">Delete Card</x-button>
+<form id="delete-form" method="POST" action="/card/{{ $card["id"] }}" class="hidden">
+    @csrf
+    @method("DELETE")
+</form>
+@endcan
 
 </x-layout>

@@ -1,8 +1,8 @@
 <!-- Wrapper -->
-<div class="bg-red-500 w-[500px] h-[260px] mb-[2rem] mx-[1rem]">
+<div class="w-[500px] h-[260px] mb-[2rem] mx-[1rem]">
 
 <!-- Top Wrapper -->
-    <div class=" flex bg-blue-500 rounded-xl w-full h-[200px] mb-[10px] overflow-hidden">
+    <div class="flex border-1 border-gray-400 bg-orange-100 rounded-xl w-full h-[200px] mb-[10px] overflow-hidden">
 
 <!-- Left Side Wrapper -->
     <div class="w-[250px] h-full">
@@ -44,19 +44,18 @@
 
 
 <!--Bottom Wrapper -->
-    <div class="flex bg-green-500 rounded-xl w-full h-[50px]">
+    <div class="flex border-1 border-gray-400 bg-orange-100 rounded-xl w-full h-[50px]">
         <div class="px-[1rem] h-full w-[250px] flex items-center">
             <img class="bg-purple-500 size-[30px] aspect-1/1"></img> <!-- crown/star/pencil (idk yet) here --> 
             <h3 class="line-clamp-2">{{ $author }}</h3> <!-- card owner here -->
         </div>
         <div class="pr-[1rem] h-full w-[250px] flex justify-between">
             <div class="flex items-center">
-                <p class="text-2xl font-bold">#</p> <!-- number of atendees here -->
-                <img class="bg-purple-500 size-[30px] aspect-1/1"></img> <!-- person svg here -->
+                <img class="bg-purple-500 size-[30px] aspect-1/1"></img> <!-- tag svg here -->
                 <h3 class=" text-xs line-clamp-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci magnam quas quos at sint, dolorum cupiditate tempora culpa ipsam. Repudiandae, delectus. Sed ad est cum consequatur iste quam cumque consequuntur?</h3> <!-- Names of atendees here-->
             </div>
             <div class="flex items-center">
-                <a href="/card/{{$id}}"> <!-- link per card here -->
+                <a class="size-[30px] min-w-[30px]" href="/card/{{$id}}"> <!-- link per card here -->
                 <img class="bg-purple-500 size-[30px] min-w-[30px] aspect-1/1 hover-click"></img>
                 </a>
             </div>

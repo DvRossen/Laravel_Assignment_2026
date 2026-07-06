@@ -29,9 +29,9 @@ Route::controller(CardController::class)->group(function(){
     Route::get('/card/{card}', 'show');
     Route::get('/cards/create','create')->middleware('auth');
     Route::post('/cards', 'store')->middleware('auth');
-    Route::patch('/card{card}', 'update')->middleware('auth');
+    Route::patch('/card{card}', 'update')->middleware('auth')->can('edit', 'card');
     Route::get('/card/{card}/edit', 'edit')->middleware('auth')->can('edit', 'card');
-    Route::delete('/card/{card}', 'destroy')->middleware('auth')->can('edit', 'card');
+    Route::delete('/card/{card}', 'destroy')->middleware('auth')->can('delete', 'card');
 });
 
 //Auth

@@ -33,8 +33,7 @@
         </div>
 
         <div class="flex flex-col">
-            <button type="submit" 
-            class="max-w-[25vw] text-white bg-blue-500 rounded-xs hover:bg-blue-400 active:bg-blue-600 cursor-pointer">Log In</button>
+            <x-button :style="'auth'">Log In</x-button>
         </div>
     </div>
 </form>
