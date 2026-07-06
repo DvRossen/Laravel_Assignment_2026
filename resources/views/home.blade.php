@@ -9,7 +9,7 @@
 @if($user['is_admin'] == true)
 <x-field :style="'notice'">
     <p class="font-bold underline">You have admin privileges.</p>
-    <p>This means you are able to edit and delete any cards made by any user.</p>
+    <p>This means you are able todelete any cards made by any user. However you will not have the ability to edit cards to prevent abuse.</p>
 </x-field>
 @endif
 
@@ -18,7 +18,6 @@
 @guest
 <h2 class="text-2xl">Welcome To Planning Cards!</h2> 
 @endguest
-
 </div>
 </x-layout>
 

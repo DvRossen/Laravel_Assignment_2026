@@ -1,6 +1,6 @@
 <x-layout>
     <x-slot:header>
-        <h1 class="text-4xl font-bold underline">Log in</h1>
+        <h1 class="text-4xl font-bold ">Log in</h1>
     </x-slot:header>
     <form method="POST" action="/login"> 
         @csrf

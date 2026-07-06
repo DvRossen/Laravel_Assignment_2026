@@ -12,7 +12,7 @@
     <x-slot:image>{{ $card['imageUrl'] }}</x-slot:image>
     <x-slot:author>{{ $card->user['username'] }}</x-slot:author>
     <x-slot:datetime>{{ $card['date'] }}</x-slot:datetime>
-
+    <x-slot:type> {{ $card['type'] }}</x-slot:type>
 </x-card>
 @endforeach
    
