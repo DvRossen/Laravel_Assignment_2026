@@ -31,6 +31,12 @@ class SessionController extends Controller
             //login
             Auth::login($user);
             if(Auth::check()){
+            //increment logged in counter
+            
+            $user->update([
+            'times_logged_in' => $user['times_logged_in'] + 1
+            ]);
+            
             //redirect
             return redirect('/');
             }

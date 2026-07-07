@@ -13,6 +13,7 @@
     <x-slot:author>{{ $card->user['username'] }}</x-slot:author>
     <x-slot:datetime>{{ $card['date'] }}</x-slot:datetime>
     <x-slot:type> {{ $card['type'] }}</x-slot:type>
+    <x-slot:location>{{ $card['location'] }}</x-slot:location>
 </x-card>
 @endforeach
    

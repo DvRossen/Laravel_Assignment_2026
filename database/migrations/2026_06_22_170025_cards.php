@@ -21,6 +21,7 @@ return new class extends Migration
             $table->longText('description');
             $table->string('imageUrl')->nullable();
             $table->datetime('date');
+            $table->string('location');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

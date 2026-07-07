@@ -10,9 +10,15 @@
     <x-field>
         <h3><span class="font-bold">Made By: </span>{{ $card->user['username'] }}</h3>
         <p><span class="font-bold">Email: </span>{{ $card->user['email'] }} </p>
-    
+        
+         <?php
+            $datetimeValue = new DateTime($card['date']);
+            $date = $datetimeValue->format('d-m-Y | H:i');
+                ?>
         <h3 class="font-bold mt-[1rem]">Date and time:</h3>
-        <p>{{ $card['date'] }}</p>
+        <p>{{ $date }}</p>
+        <h3 class="font-bold">Location:</h3>
+        <p>{{ $card['location'] }}</p>
         <h3 class="font-bold mt-[1rem]">Description:</h3>
         <p>{{ $card['description'] }}</p>
         

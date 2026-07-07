@@ -23,38 +23,14 @@
             <div class="flex flex-col">
             <label for="typeSelect">Icon Type<span class="text-red-400 font-bold">*</span></label>
             <fieldset required class="flex flex-row gap-3"name="typeSelect">
-                <div class="flex flex-col justify-center">
-                    <x-type :icon="1"></x-type>
-                    <input type="radio" id="iconChoice1" name="type" value="1"/>
-                </div>
-                <div class="flex flex-col justify-center">
-                    <x-type :icon="2"></x-type>
-                    <input type="radio" id="iconChoice2" name="type" value="2"/>
-                </div>
-                <div class="flex flex-col justify-center">
-                    <x-type :icon="3"></x-type>
-                    <input type="radio" id="iconChoice2" name="type" value="3"/>
-                </div>
-                <div class="flex flex-col justify-center">
-                    <x-type :icon="4"></x-type>
-                    <input type="radio" id="iconChoice2" name="type" value="4"/>
-                </div>
-                <div class="flex flex-col justify-center">
-                    <x-type :icon="5"></x-type>
-                    <input type="radio" id="iconChoice2" name="type" value="5"/>
-                </div>
-                <div class="flex flex-col justify-center">
-                    <x-type :icon="6"></x-type>
-                    <input type="radio" id="iconChoice2" name="type" value="6"/>
-                </div>
-                <div class="flex flex-col justify-center">
-                    <x-type :icon="7"></x-type>
-                    <input type="radio" id="iconChoice2" name="type" value="7"/>
-                </div>
-                <div class="flex flex-col justify-center">
-                    <x-type :icon="8"></x-type>
-                    <input type="radio" id="iconChoice2" name="type" value="8"/>
-                </div>
+                <x-radiobutton :value="1"></x-radiobutton>
+                <x-radiobutton :value="2"></x-radiobutton>
+                <x-radiobutton :value="3"></x-radiobutton>
+                <x-radiobutton :value="4"></x-radiobutton>
+                <x-radiobutton :value="5"></x-radiobutton>
+                <x-radiobutton :value="6"></x-radiobutton>
+                <x-radiobutton :value="7"></x-radiobutton>
+                <x-radiobutton :value="8"></x-radiobutton>
             </fieldset>
                 @error('type')
                 <p class="font-bold text-red-400 text-xs"> {{ $message }}</p>
@@ -67,13 +43,21 @@
                 <p class="font-bold text-red-400 text-xs"> {{ $message }}</p>
                 @enderror
         </div>
-        <div class="flex flex-col">
-            <label for="title">Date<span class="text-red-400 font-bold">*</span></label>
-            <input required type="datetime-local" name="date" id="date" class="max-w-[25vw] border-1 border-gray-700 rounded-xs hover:bg-gray-100 focus:border-blue-500">
-                @error('title')
+         <div class="flex flex-col">
+            <label for="location">Location<span class="text-red-400 font-bold">*</span></label>
+            <input required placeholder="location of activity" type="text" name="location" id="location" class="max-w-[25vw] border-1 border-gray-700 rounded-xs hover:bg-gray-100 focus:border-blue-500">
+                @error('location')
                 <p class="font-bold text-red-400 text-xs"> {{ $message }}</p>
                 @enderror
         </div>
+        <div class="flex flex-col">
+            <label for="date">Date<span class="text-red-400 font-bold">*</span></label>
+            <input required type="datetime-local" name="date" id="date" class="max-w-[25vw] border-1 border-gray-700 rounded-xs hover:bg-gray-100 focus:border-blue-500">
+                @error('date')
+                <p class="font-bold text-red-400 text-xs"> {{ $message }}</p>
+                @enderror
+        </div>
+    
         
         
         <div class="flex flex-col">

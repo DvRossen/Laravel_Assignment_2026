@@ -9,7 +9,16 @@
 @if($user['is_admin'] == true)
 <x-field :style="'notice'">
     <p class="font-bold underline">You have admin privileges.</p>
-    <p>This means you are able todelete any cards made by any user. However you will not have the ability to edit cards to prevent abuse.</p>
+    <p>This means you are able to delete any cards made by any user. However you will not have the ability to edit cards to prevent abuse.</p>
+</x-field>
+@endif
+
+
+@if(
+$user['times_logged_in'] < 4)
+<x-field :style="'notice'">
+    <p class="font-blod"> you've logged in {{ $user['times_logged_in'] }} time(s)!</p>
+    <p> to make a card you will have to log in {{ $value = (4 - $user['times_logged_in'])  }} more time(s)!</p>
 </x-field>
 @endif
 

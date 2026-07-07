@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Card;
+use App\Models\User;
 
 
 class CardController extends Controller
@@ -14,17 +15,31 @@ class CardController extends Controller
 
     }
     public function create(){
+        $user = Auth::user();
+        if($user['times_logged_in'] >= 4){
         return view('cards.create');
+        }else{
+        return view('cards.error', ['user' => $user]);
+        };
     }
-    public function show(Card $card){
+    public function show(Card $card){ //this verification on controller level instead of route level because route level instantly blocks guests
+        $user = Auth::user();
+    
+        if($card['is_active'] == true){
         return view('cards.show', ['card' => $card]);
-    }
+        }elseif($user &&  $user['id'] == $card['user_id']){
+        return view('cards.show', ['card' => $card]);
+        };
+        return redirect('/cards');
+        }
     public function store(){
+        if(Auth::user()['times_logged_in'] >= 4){
         request()->validate([
         'title' => ['required'],
         'description' => ['required'],
         'type' => ['required', 'integer'],
         'imageUrl' => ['nullable'],
+        'location' => ['required'],
         'date' => ['required']
         ]);
 
@@ -35,9 +50,13 @@ class CardController extends Controller
         'type' => request('type'),
         'imageUrl' => request('imageUrl'),
         'date' => request('date'),
+        'location' => request('location'),
         'user_id' => Auth::user()->id
         ]);
         return redirect('/cards');
+        }else{
+        return view('cards.error');
+        };
     }
     public function edit(Card $card){
 
@@ -56,6 +75,7 @@ class CardController extends Controller
         'description' => ['required'],
         'type' => ['required', 'integer'],
         'imageUrl' => ['nullable'],
+        'location' => ['required'],
         'date' => ['required']
         ]);
 
@@ -65,6 +85,7 @@ class CardController extends Controller
         'description' => request('description'),
         'type' => request('type'),
         'imageUrl' => request('imageUrl'),
+        'location' => request('location'),
         'date' => request('date')
         ]);
 

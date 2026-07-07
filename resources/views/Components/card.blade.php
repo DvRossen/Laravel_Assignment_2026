@@ -55,12 +55,12 @@
         </div>
         <div class="pr-[1rem] h-full w-[250px] flex justify-between">
             <div class="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" 
-                viewBox="0 -960 960 960" 
-                class="fill-black min-w-[30px] min-h-[30px] mr-2">
-                    <path d="M446-80q-15 0-30-6t-27-18L103-390q-12-12-17.5-26.5T80-446q0-15 5.5-30t17.5-27l352-353q11-11 26-17.5t31-6.5h287q33 0 56.5 23.5T879-800v287q0 16-6 30.5T856-457L503-104q-12 12-27 18t-30 6Zm0-80 353-354v-286H513L160-446l286 286Zm253-480q25 0 42.5-17.5T759-700q0-25-17.5-42.5T699-760q-25 0-42.5 17.5T639-700q0 25 17.5 42.5T699-640ZM480-480Z"/>
-                </svg>                
-                    <h3 class=" text-xs line-clamp-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci magnam quas quos at sint, dolorum cupiditate tempora culpa ipsam. Repudiandae, delectus. Sed ad est cum consequatur iste quam cumque consequuntur?</h3> <!-- Names of atendees here-->
+            <svg xmlns="http://www.w3.org/2000/svg" 
+                height="24px" viewBox="0 -960 960 960" 
+                class=" fill-black min-w-[30px] min-h-[30px] mr-2">
+                    <path d="M480-301q99-80 149.5-154T680-594q0-90-56-148t-144-58q-88 0-144 58t-56 148q0 65 50.5 139T480-301Zm0 101Q339-304 269.5-402T200-594q0-125 78-205.5T480-880q124 0 202 80.5T760-594q0 94-69.5 192T480-200Zm0-320q33 0 56.5-23.5T560-600q0-33-23.5-56.5T480-680q-33 0-56.5 23.5T400-600q0 33 23.5 56.5T480-520ZM200-80v-80h560v80H200Zm280-520Z"/>
+            </svg>           
+                    <h3 class=" font-bold text-xs line-clamp-2">{{ $location }}</h3> <!-- Location here-->
             </div>
             <div class="flex items-center">
                 <a class="size-[30px] min-w-[30px] hover:pointer" href="/card/{{$id}}"> <!-- link per card here -->

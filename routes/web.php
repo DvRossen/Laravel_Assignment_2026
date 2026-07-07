@@ -26,7 +26,7 @@ return view('home', ['user' => $user]);
 Route::controller(CardController::class)->group(function(){
     
     Route::get('/cards', 'index');
-    Route::get('/card/{card}', 'show')->can('view', 'card');
+    Route::get('/card/{card}', 'show');
     Route::get('/cards/create','create')->middleware('auth');
     Route::post('/cards', 'store')->middleware('auth');
     Route::patch('/card{card}', 'update')->middleware('auth')->can('edit', 'card');
