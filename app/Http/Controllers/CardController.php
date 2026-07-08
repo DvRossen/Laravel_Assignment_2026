@@ -11,19 +11,32 @@ use App\Models\Like;
 class CardController extends Controller
 {
     public function index(){
-    $cards = Card::with('user')->where('is_active', true)->orderBy('created_at');
+
+    $cards = Card::with('user')->where('is_active',true)->orderBy('created_at');
+  
+
+    if(request()->has('tags')){
+    $cards = $cards->where(function($query){
+    
+    foreach($_GET['tags'] as $tag){
+    $query->orwhere('type', $tag);
+    }
+    
+    });
+    };
 
         if(request()->has('search')){
-                $cards = $cards->where('title', 'LIKE', '%' .request()->get('search'). '%')
-            ->orWhere('location','like','%'.request()->get('search').'%') 
+                $cards = $cards->where(function($query){
+            $query->where('title', 'LIKE', '%' .request()->get('search'). '%')
+            ->orwhere('location','like','%'.request()->get('search').'%') 
             ->orWhereHas('user', function($q){
-        return $q->where('username', 'LIKE', '%' . request()->get('search') . '%');
-    });
+             $q->where('username', 'LIKE', '%' . request()->get('search') . '%');
+        });
+        })->get();
+            
+        }else{
+        $cards = $cards->simplepaginate(4);
         };
-
-    
-        //check searh in db
-    $cards = $cards->simplePaginate(4);
        
         return view('cards.index', ['cards' =>$cards] );
 
