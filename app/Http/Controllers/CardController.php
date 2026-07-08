@@ -4,13 +4,27 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Card;
+use App\Models\User;
 use App\Models\Like;
 
 
 class CardController extends Controller
 {
     public function index(){
-        $cards = Card::with('user')->where('is_active', true)->simplepaginate(4);
+    $cards = Card::with('user')->where('is_active', true)->orderBy('created_at');
+
+        if(request()->has('search')){
+                $cards = $cards->where('title', 'LIKE', '%' .request()->get('search'). '%')
+            ->orWhere('location','like','%'.request()->get('search').'%') 
+            ->orWhereHas('user', function($q){
+        return $q->where('username', 'LIKE', '%' . request()->get('search') . '%');
+    });
+        };
+
+    
+        //check searh in db
+    $cards = $cards->simplePaginate(4);
+       
         return view('cards.index', ['cards' =>$cards] );
 
     }

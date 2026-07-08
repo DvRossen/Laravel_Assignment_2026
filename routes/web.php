@@ -22,7 +22,10 @@ use App\Models\Like;
 //home
 Route::get('/', function(){
 $user = Auth::user();
+$likes = null;
+if($user){
 $likes = Like::where('user_id', $user['id'])->get();
+}
 return view('home', ['user' => $user, 'likes' => $likes]);
 });
 //Card Group
@@ -41,6 +44,7 @@ Route::controller(CardController::class)->group(function(){
 //like
 Route::post('/card/{card}/like', [LikeController::class, 'like'])->middleware('auth');
 Route::post('/card/{card}/dislike', [LikeController::class, 'dislike'])->middleware('auth');
+
 //Auth
 Route::get('/register', [RegisteredUserController::class, 'create']);
 Route::post('/register', [RegisteredUserController::class, 'store']);
