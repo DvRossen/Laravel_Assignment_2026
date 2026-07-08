@@ -52,8 +52,10 @@ class CardController extends Controller
     }
     public function show(Card $card,){ //this verification on controller level instead of route level because route level instantly blocks guests
         $user = Auth::user();
+        $hasLike = null;
+        if($user){
         $hasLike = Like::where('user_id' , $user['id'])->where('card_id' , $card['id'])->exists();
-        
+        }
         $sucessReturn = view('cards.show', ['card' => $card,'hasLike' => $hasLike]);
 
         if($card['is_active'] == true){

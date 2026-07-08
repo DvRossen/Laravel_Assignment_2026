@@ -33,6 +33,7 @@
             type="text" 
             name="search" 
             id="search" 
+            autocomplete="off"
             @if(request()->has('search'))
             value="{{ request('search') }}"
             @endif
