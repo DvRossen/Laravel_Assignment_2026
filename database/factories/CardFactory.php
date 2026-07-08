@@ -22,6 +22,7 @@ class CardFactory extends Factory
             'user_id' => User::factory(),
             'type'=> fake()->numberBetween(0,8),
             'description' => fake()->paragraph(),
+            'location' => fake()->locale(),
             'imageUrl' => fake()->imageUrl(),
             'date' => fake()->date()
         ];

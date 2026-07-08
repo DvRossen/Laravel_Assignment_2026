@@ -8,7 +8,22 @@
 
 <div class="flex flex-col items-center">
     <x-field>
-        <h3><span class="font-bold">Made By: </span>{{ $card->user['username'] }}</h3>
+    @auth
+    @if (!$hasLike)
+       <form method="POST" action="/card/{{ $card['id'] }}/like">
+        @csrf
+            <x-button type="sumbit">Like</x-button>
+        </form>
+    @else
+        <form method="POST" action="/card/{{ $card['id'] }}/dislike">
+        @csrf
+            <x-button :style="'danger'" type="sumbit">Dislike</x-button>
+        </form>
+    @endif
+    @endauth
+       
+       
+       <h3><span class="font-bold">Made By: </span>{{ $card->user['username'] }}</h3>
         <p><span class="font-bold">Email: </span>{{ $card->user['email'] }} </p>
         
          <?php

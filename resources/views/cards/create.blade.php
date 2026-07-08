@@ -2,7 +2,7 @@
     <x-slot:header>
         <h1 class="text-4xl font-bold">Create Card</h1>
     </x-slot:header>
-    <form method="POST" action="/cards"> 
+    <form method="POST" action="/cards" autocomplete="off"> 
         @csrf
     <div class="flex flex-col gap-y-[2rem] max-w-[50vw]">
        
@@ -38,7 +38,7 @@
         </div>
         <div class="flex flex-col">
             <label for="imageUrl">Image</label>
-            <input placeholder="img URL"  type="text" name="imageUrl" id="imageUrl" class="max-w-[25vw] border-1 border-gray-700 rounded-xs hover:bg-gray-100 focus:border-blue-500">
+            <input placeholder="img URL" type="text" name="imageUrl" id="imageUrl" class="max-w-[25vw] border-1 border-gray-700 rounded-xs hover:bg-gray-100 focus:border-blue-500">
                 @error('imageUrl')
                 <p class="font-bold text-red-400 text-xs"> {{ $message }}</p>
                 @enderror

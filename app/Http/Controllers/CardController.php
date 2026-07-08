@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Card;
-use App\Models\User;
+use App\Models\Like;
 
 
 class CardController extends Controller
@@ -15,25 +15,31 @@ class CardController extends Controller
 
     }
     public function create(){
-        $user = Auth::user();
-        if($user['times_logged_in'] >= 4){
+        $user = Auth::user(); 
+        $likes = Like::where('user_id', $user['id'])->get();
+        if(count($likes) >= 4 || $user['is_admin']){
         return view('cards.create');
         }else{
-        return view('cards.error', ['user' => $user]);
+        return view('cards.error', ['user' => $user, 'likes' => $likes]);
         };
     }
-    public function show(Card $card){ //this verification on controller level instead of route level because route level instantly blocks guests
+    public function show(Card $card,){ //this verification on controller level instead of route level because route level instantly blocks guests
         $user = Auth::user();
-    
+        $hasLike = Like::where('user_id' , $user['id'])->where('card_id' , $card['id'])->exists();
+        
+        $sucessReturn = view('cards.show', ['card' => $card,'hasLike' => $hasLike]);
+
         if($card['is_active'] == true){
-        return view('cards.show', ['card' => $card]);
+        return $sucessReturn;
         }elseif($user &&  $user['id'] == $card['user_id']){
-        return view('cards.show', ['card' => $card]);
+        return $sucessReturn ;
         };
         return redirect('/cards');
         }
     public function store(){
-        if(Auth::user()['times_logged_in'] >= 4){
+        $user = Auth::user(); 
+        $likes = Like::where('user_id', $user['id'])->get();
+        if(count($likes) >= 4 || $user['is_admin']){
         request()->validate([
         'title' => ['required'],
         'description' => ['required'],

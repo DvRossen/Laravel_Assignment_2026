@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\CardController;
+use App\Http\Controllers\LikeController;
+use App\Models\Like;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +22,8 @@ use App\Http\Controllers\CardController;
 //home
 Route::get('/', function(){
 $user = Auth::user();
-return view('home', ['user' => $user]);
+$likes = Like::where('user_id', $user['id'])->get();
+return view('home', ['user' => $user, 'likes' => $likes]);
 });
 //Card Group
 Route::controller(CardController::class)->group(function(){
@@ -35,6 +38,9 @@ Route::controller(CardController::class)->group(function(){
     Route::patch('/card/{card}/activate', 'activate')->middleware('auth')->can('edit', 'card');
 });
 
+//like
+Route::post('/card/{card}/like', [LikeController::class, 'like'])->middleware('auth');
+Route::post('/card/{card}/dislike', [LikeController::class, 'dislike'])->middleware('auth');
 //Auth
 Route::get('/register', [RegisteredUserController::class, 'create']);
 Route::post('/register', [RegisteredUserController::class, 'store']);
@@ -42,3 +48,5 @@ Route::get('/login', [SessionController::class, 'create']);
 Route::post('/login', [SessionController::class, 'store'])->name('login');
 Route::post('/logout', [SessionController::class, 'destroy']);
 Route::get('/profile', [RegisteredUserController::class, 'show'])->middleware('auth');
+Route::get('/profile/edit', [RegisteredUserController::class, 'edit'])->middleware('auth');
+Route::patch('/profile', [RegisteredUserController::class, 'update'])->middleware('auth');

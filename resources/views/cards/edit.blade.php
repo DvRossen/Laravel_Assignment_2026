@@ -4,7 +4,7 @@
     <a class="underline" href="/card/{{ $card['id'] }}"><- go back</a>
 </x-slot:header>
     
-    <form method="POST" action="/card{{ $card['id'] }}"> 
+    <form method="POST" action="/card{{ $card['id'] }} " autocomplete="off"> 
         @csrf
         @method('PATCH')
 
@@ -74,12 +74,12 @@
         <div class="flex flex-col">
             <label for="location">Location<span class="text-red-400 font-bold">*</span></label>
             <input required 
-            placeholder="location of activity" 
-            type="text" 
-            name="location"
-            value="{{ $card['location'] }}" 
-            id="location" 
-            class="max-w-[25vw] border-1 border-gray-700 rounded-xs hover:bg-gray-100 focus:border-blue-500">
+                placeholder="location of activity" 
+                type="text" 
+                name="location"
+                value="{{ $card['location'] }}" 
+                id="location" 
+                class="max-w-[25vw] border-1 border-gray-700 rounded-xs hover:bg-gray-100 focus:border-blue-500">
                 
                 @error('location')
                 <p class="font-bold text-red-400 text-xs"> {{ $message }}</p>
